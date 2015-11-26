@@ -23,7 +23,7 @@ func test_mutate_addDictionaryEntry_entryIsAdded()
 {
     let agent = Agent { NSMutableDictionary(dictionary: ["A": 1]) }
     agent.mutate { $0["B"] = 2 }
-    XCTAssertEqual(agent.get()["A"] as Int, 1, "")
-    XCTAssertEqual(agent.get()["B"] as Int, 2, "")
+    XCTAssertEqual(agent.get()["A"] as? Int, 1, "")
+    XCTAssertEqual(agent.get()["B"] as? Int, 2, "")
 }
 ```
