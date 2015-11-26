@@ -37,8 +37,8 @@ class SwiftAgentTests: XCTestCase
     {
         let agent = Agent { NSMutableDictionary(dictionary: ["A": 1]) }
         agent.mutate { $0["B"] = 2 }
-        XCTAssertEqual(agent.get()["A"] as Int, 1, "")
-        XCTAssertEqual(agent.get()["B"] as Int, 2, "")
+        XCTAssertEqual(agent.get()["A"] as? Int, 1, "")
+        XCTAssertEqual(agent.get()["B"] as? Int, 2, "")
     }
     
     func test_mutate_addBToSetThenRemoveA_onlyContainsB()
@@ -154,13 +154,13 @@ class AgentUpdater<T>
 
 extension Array
 {
-    func each(closure: (T) -> Void)
+    func each(closure: (Element) -> Void)
     {
         for elem in self { closure(elem) }
     }
     
     func each(closure: () -> Void)
     {
-        for elem in self { closure() }
+        for _ in self { closure() }
     }
 }
